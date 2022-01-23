@@ -64,6 +64,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CV\FormsView_Utils.cs" />
     <Compile Include="CV\SingleItemCell.cs" />
     <Compile Include="CV\TextCollectionViewCell.cs" />
     <Compile Include="CV\WaterfallCollectionDelegate.cs" />
@@ -132,6 +133,9 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
   </ItemGroup>
@@ -141,5 +145,8 @@
       <Project>{C8EB5D0B-6D71-47DF-B910-7BE58D58BF50}</Project>
       <Name>MSDocWFLayout</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\a.jpg" />
   </ItemGroup>
 </Project>

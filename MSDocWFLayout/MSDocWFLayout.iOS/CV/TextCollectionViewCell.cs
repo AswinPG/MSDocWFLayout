@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using CoreGraphics;
 using Foundation;
 using UIKit;
@@ -7,31 +8,48 @@ namespace MSDocWFLayout.iOS.CV
 {
     public partial class TextCollectionViewCell : UICollectionViewCell
     {
-        #region Computed Properties
-        public string Title
-        {
-            get { return TextLabel.Text; }
-            set { TextLabel.Text = value; }
-        }
-        #endregion
+        //public string Title
+        //{
+        //    get { return TextLabel.Text; }
+        //    set { TextLabel.Text = value; }
+        //}
+        //#endregion
 
-        public UILabel TextLabel
-        {
-            get; set;
-        }
+        //public UILabel TextLabel
+        //{
+        //    get; set;
+        //}
         public const string CELL_ID = "CELL_ID";
 
-        #region Constructors
-        public TextCollectionViewCell(IntPtr handle) : base(handle)
+        [Export("initWithFrame:")]
+        public TextCollectionViewCell(RectangleF handle) : base(handle)
         {
-            TextLabel = new UILabel();
-            BackgroundColor = UIColor.White;
-            var subview = new UIView(new CGRect(0, 0, Frame.Width, Frame.Height));
-            TextLabel.Frame = subview.Frame;
-            subview.Add(TextLabel);
+            //TextLabel = new UILabel();
+            //BackgroundColor = UIColor.White;
+            //var subview = new UIView(new CGRect(0, 0, Frame.Width, Frame.Height));
+            //TextLabel.Frame = subview.Frame;
+            //subview.Add(TextLabel);
 
-            ContentView.AddSubview(subview);
+            //ContentView.AddSubview(subview);
         }
-        #endregion
+        UIView _rendererView;
+        public UIView RendererView
+        {
+            get { return _rendererView; }
+            set
+            {
+                _rendererView = value;
+                if (ContentView.Subviews.Length > 0)
+                {
+                    ContentView.Subviews[0].RemoveFromSuperview();
+                }
+
+                var subview = new UIView(new CGRect(0, 0, Frame.Width, Frame.Height));
+                _rendererView.Frame = subview.Frame;
+                subview.Add(_rendererView);
+
+                ContentView.AddSubview(subview);
+            }
+        }
     }
 }

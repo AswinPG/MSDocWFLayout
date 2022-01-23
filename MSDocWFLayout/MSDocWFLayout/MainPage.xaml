@@ -6,7 +6,29 @@
     xmlns:msdocwflayout="clr-namespace:MSDocWFLayout">
 
     <StackLayout VerticalOptions="FillAndExpand">
-        <msdocwflayout:WFCollectionView BackgroundColor="Lime" VerticalOptions="FillAndExpand" />
+        <msdocwflayout:WFCollectionView BackgroundColor="Lime" VerticalOptions="FillAndExpand">
+            <msdocwflayout:WFCollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid BackgroundColor="Yellow" VerticalOptions="FillAndExpand">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped" />
+                        </Grid.GestureRecognizers>
+                        <Image Aspect="AspectFill" Source="a.jpg" />
+                        <Label Text="{Binding .}" VerticalOptions="StartAndExpand" />
+                        <Label
+                            Text="{Binding .}"
+                            TextColor="Red"
+                            VerticalOptions="End" />
+                        <Button
+                            Background="Red"
+                            Clicked="Button_Clicked"
+                            Text="Blah"
+                            VerticalOptions="End"
+                            WidthRequest="100" />
+                    </Grid>
+                </DataTemplate>
+            </msdocwflayout:WFCollectionView.ItemTemplate>
+        </msdocwflayout:WFCollectionView>
     </StackLayout>
 
 </ContentPage>

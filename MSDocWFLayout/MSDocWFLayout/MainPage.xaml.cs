@@ -14,5 +14,15 @@ namespace MSDocWFLayout
         {
             InitializeComponent();
         }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            await DisplayAlert("Tapped", ((Grid)sender).BindingContext.ToString(), "ok");
+        }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Tapped", ((VisualElement)sender).BindingContext.ToString(), "ok");
+        }
     }
 }

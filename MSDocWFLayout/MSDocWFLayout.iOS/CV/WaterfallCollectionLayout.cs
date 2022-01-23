@@ -3,6 +3,7 @@ using Foundation;
 using UIKit;
 using System.Collections.Generic;
 using CoreGraphics;
+using Newtonsoft.Json;
 
 namespace MSDocWFLayout.iOS.CV
 {
@@ -15,13 +16,13 @@ namespace MSDocWFLayout.iOS.CV
         private nfloat minimumInterItemSpacing = 10;
         private nfloat headerHeight = 0.0f;
         private nfloat footerHeight = 0.0f;
-        private UIEdgeInsets sectionInset = new UIEdgeInsets(0, 0, 0, 0);
-        private WaterfallCollectionRenderDirection itemRenderDirection = WaterfallCollectionRenderDirection.LeftToRight;
+        private UIEdgeInsets sectionInset = new UIEdgeInsets(10, 10, 10, 10);
+        private WaterfallCollectionRenderDirection itemRenderDirection = WaterfallCollectionRenderDirection.ShortestFirst;
         private Dictionary<nint, UICollectionViewLayoutAttributes> headersAttributes = new Dictionary<nint, UICollectionViewLayoutAttributes>();
         private Dictionary<nint, UICollectionViewLayoutAttributes> footersAttributes = new Dictionary<nint, UICollectionViewLayoutAttributes>();
-        
-        
-        
+
+
+
         private List<CGRect> unionRects = new List<CGRect>();
         private List<nfloat> columnHeights = new List<nfloat>();
         private List<UICollectionViewLayoutAttributes> allItemAttributes = new List<UICollectionViewLayoutAttributes>();
@@ -327,6 +328,7 @@ namespace MSDocWFLayout.iOS.CV
                 if (rect.IntersectsWith(unionRects[i]))
                 {
                     begin = i * (int)unionSize;
+                    break;
                 }
             }
 
@@ -338,16 +340,39 @@ namespace MSDocWFLayout.iOS.CV
                     break;
                 }
             }
+            int counter = 0;
+
+            //for (int i = 0; i < allItemAttributes.Count; i++)
+            //{
+            //    try
+            //    {
+            //        Console.WriteLine(i);
+            //        var data = allItemAttributes[i].Frame.ToString();
+            //        if (i == 99)
+            //        {
+
+            //        }
+            //        Console.WriteLine(data);
+            //        Console.WriteLine("End");
+            //    }
+            //    catch (Exception g)
+            //    {
+            //    }
+                
+
+            //}
 
             for (int i = begin; i < end; i++)
             {
+
                 var attr = allItemAttributes[i];
                 if (rect.IntersectsWith(attr.Frame))
                 {
                     attrs.Add(attr);
+                    counter++;
                 }
             }
-
+            Console.WriteLine("Items Count : " + counter);
             return attrs.ToArray();
         }
 
@@ -409,7 +434,7 @@ namespace MSDocWFLayout.iOS.CV
                     index = ShortestColumnIndex();
                     break;
                 case WaterfallCollectionRenderDirection.LeftToRight:
-                    index = ColumnCount;
+                    index = GetIndexLeftToRght(item);
                     break;
                 case WaterfallCollectionRenderDirection.RightToLeft:
                     index = (ColumnCount - 1) - ((int)item / ColumnCount);
@@ -418,6 +443,12 @@ namespace MSDocWFLayout.iOS.CV
 
             return index;
         }
+
+        public int GetIndexLeftToRght(nint item)
+        {
+            return (int)(item % columnCount);
+        }
+
         #endregion
 
         #region Events

@@ -19,14 +19,22 @@ namespace MSDocWFLayout.iOS.CV
             CollectionView = collectionView;
 
         }
+
+
+        //public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath)
+        //{
+        //    base.ItemSelected(collectionView, indexPath);
+        //}
+
+
         #endregion
 
         #region Overrides Methods
-        public override bool ShouldHighlightItem(UICollectionView collectionView, NSIndexPath indexPath)
-        {
-            // Always allow for highlighting
-            return false;
-        }
+        //public override bool ShouldHighlightItem(UICollectionView collectionView, NSIndexPath indexPath)
+        //{
+        //    // Always allow for highlighting
+        //    return false;
+        //}
 
         //public override void ItemHighlighted(UICollectionView collectionView, NSIndexPath indexPath)
         //{

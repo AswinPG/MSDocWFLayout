@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace MSDocWFLayout
 {
-    public class WFCollectionView : View
+    public class WFCollectionView : ItemsView
     {
     }
 }

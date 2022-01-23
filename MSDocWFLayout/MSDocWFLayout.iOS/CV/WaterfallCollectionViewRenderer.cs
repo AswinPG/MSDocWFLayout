@@ -12,6 +12,7 @@ namespace MSDocWFLayout.iOS.CV
 {
     public class WaterfallCollectionViewRenderer : ViewRenderer<WFCollectionView, UICollectionView>
     {
+
         public WaterfallCollectionViewRenderer()
         {
 
@@ -23,7 +24,7 @@ namespace MSDocWFLayout.iOS.CV
             if (e.PropertyName == nameof(Element.Width) && Control == null)
             {
                 base.OnElementPropertyChanged(sender, e);
-
+                //_events = new EventTracker(this);
                 CreateView();
             }
         }
@@ -32,6 +33,8 @@ namespace MSDocWFLayout.iOS.CV
             get { return (WaterfallCollectionSource)collectionView.DataSource; }
         }
         UICollectionView collectionView;
+        //private EventTracker _events;
+
         void CreateView()
         {
 
@@ -55,7 +58,9 @@ namespace MSDocWFLayout.iOS.CV
             ////source.ItemsSource = SourceList;
             //WSource.Header = Element.Header;
             //var source = new ObservableItemsSource(Element.ItemsSource, collectionView, WSource, this);
-            collectionView.DataSource = new WaterfallCollectionSource(collectionView);
+            var wfsouce = new WaterfallCollectionSource(collectionView);
+            wfsouce.ItemTemplate = Element.ItemTemplate;
+            collectionView.DataSource = wfsouce;
             collectionView.Delegate = new WaterfallCollectionDelegate(collectionView);
 
             collectionView.RegisterClassForCell(typeof(TextCollectionViewCell), TextCollectionViewCell.CELL_ID);
