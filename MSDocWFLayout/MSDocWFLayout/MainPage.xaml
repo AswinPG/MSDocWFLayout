@@ -3,13 +3,25 @@
     x:Class="MSDocWFLayout.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:msdocwflayout="clr-namespace:MSDocWFLayout">
+    xmlns:msdocwflayout="clr-namespace:MSDocWFLayout"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
 
     <StackLayout VerticalOptions="FillAndExpand">
         <msdocwflayout:WFCollectionView BackgroundColor="Lime" VerticalOptions="FillAndExpand">
             <msdocwflayout:WFCollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid BackgroundColor="Yellow" VerticalOptions="FillAndExpand">
+                    <Grid
+                        xct:TouchEffect.LongPressDuration="500"
+                        xct:TouchEffect.PressedScale=".97"
+                        BackgroundColor="Yellow"
+                        VerticalOptions="FillAndExpand">
+                        <Grid.Effects>
+                            <xct:TouchEffect
+                                Completed="TouchEffect_Completed"
+                                LongPressCompleted="TouchEffect_LongPressCompleted"
+                                StateChanged="TouchEffect_StateChanged"
+                                StatusChanged="TouchEffect_StatusChanged" />
+                        </Grid.Effects>
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped" />
                         </Grid.GestureRecognizers>
