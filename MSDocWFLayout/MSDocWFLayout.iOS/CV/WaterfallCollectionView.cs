@@ -17,17 +17,17 @@ namespace MSDocWFLayout.iOS.CV
         #endregion
 
         #region Override Methods
-        public override void AwakeFromNib()
-        {
-            base.AwakeFromNib();
+        //public override void AwakeFromNib()
+        //{
+        //    base.AwakeFromNib();
 
             
 
-            // Initialize
-            DataSource = new WaterfallCollectionSource(this);
-            Delegate = new WaterfallCollectionDelegate(this);
+        //    // Initialize
+        //    DataSource = new WaterfallCollectionSource(this);
+        //    Delegate = new WaterfallCollectionDelegate(this);
 
-        }
+        //}
         #endregion
         public WaterfallCollectionSource Source
         {

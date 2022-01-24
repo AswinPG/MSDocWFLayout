@@ -144,7 +144,6 @@ namespace MSDocWFLayout.iOS.CV
         #region Public Methods
         public nfloat ItemWidthInSectionAtIndex(int section)
         {
-
             var width = CollectionView.Bounds.Width - SectionInset.Left - SectionInset.Right;
             return (nfloat)Math.Floor((width - ((ColumnCount - 1) * MinimumColumnSpacing)) / ColumnCount);
         }
@@ -219,7 +218,7 @@ namespace MSDocWFLayout.iOS.CV
                     columnIndex = NextColumnIndexForItem(n);
                     var xOffset = SectionInset.Left + (itemWidth + MinimumColumnSpacing) * (nfloat)columnIndex;
                     var yOffset = columnHeights[columnIndex];
-                    var itemSize = (SizeForItem == null) ? new CGSize(0, 0) : SizeForItem(CollectionView, this, indexPath);
+                    var itemSize = (SizeForItem == null) ? new CGSize(0, 0) : SizeForItem((int)indexPath.Item);
                     nfloat itemHeight = 0.0f;
 
                     if (itemSize.Height > 0.0f && itemSize.Width > 0.0f)
@@ -369,6 +368,9 @@ namespace MSDocWFLayout.iOS.CV
                 if (rect.IntersectsWith(attr.Frame))
                 {
                     attrs.Add(attr);
+                    //Console.WriteLine();
+                    //Console.WriteLine(attr.ToString());
+                    //Console.WriteLine();
                     counter++;
                 }
             }
@@ -452,11 +454,14 @@ namespace MSDocWFLayout.iOS.CV
         #endregion
 
         #region Events
-        public delegate CGSize WaterfallCollectionSizeDelegate(UICollectionView collectionView, WaterfallCollectionLayout layout, NSIndexPath indexPath);
         public delegate nfloat WaterfallCollectionFloatDelegate(UICollectionView collectionView, WaterfallCollectionLayout layout, nint section);
         public delegate UIEdgeInsets WaterfallCollectionEdgeInsetsDelegate(UICollectionView collectionView, WaterfallCollectionLayout layout, nint section);
 
-        public event WaterfallCollectionSizeDelegate SizeForItem;
+        //public GetHeightForItemDelegate GetHeightForItemDelegate { get; set; }
+
+
+        public WaterfallCollectionSizeDelegate SizeForItem;
+
         public event WaterfallCollectionFloatDelegate HeightForHeader;
         public event WaterfallCollectionFloatDelegate HeightForFooter;
         public event WaterfallCollectionEdgeInsetsDelegate InsetForSection;

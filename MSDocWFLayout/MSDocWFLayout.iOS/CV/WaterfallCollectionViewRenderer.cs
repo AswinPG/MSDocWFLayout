@@ -49,19 +49,16 @@ namespace MSDocWFLayout.iOS.CV
 
             var frame = new CGRect(0, 0, Element.Width, Element.Height);
             collectionView = new UICollectionView(frame, _layout);
-            _layout.SizeForItem += (collectionView2, layout, indexPath) => {
-                var collection = collectionView2 as WaterfallCollectionView;
-                return new CGSize(180, Source.Heights[(int)indexPath.Item]);
-            };
+            _layout.SizeForItem = Element.GetHeightForCellDelegate;
             //var WSource = new WCollectionViewSource(Element, collectionView);
             //WSource.ItemTemplate = Element.ItemTemplate;
             ////source.ItemsSource = SourceList;
             //WSource.Header = Element.Header;
             //var source = new ObservableItemsSource(Element.ItemsSource, collectionView, WSource, this);
-            var wfsouce = new WaterfallCollectionSource(collectionView);
+            var wfsouce = new WaterfallCollectionSource(collectionView, Element.ItemsSource);
             wfsouce.ItemTemplate = Element.ItemTemplate;
             collectionView.DataSource = wfsouce;
-            collectionView.Delegate = new WaterfallCollectionDelegate(collectionView);
+            collectionView.Delegate = new WaterfallCollectionDelegate(collectionView,Element,wfsouce);
 
             collectionView.RegisterClassForCell(typeof(TextCollectionViewCell), TextCollectionViewCell.CELL_ID);
             //collectionView.RegisterClassForCell(typeof(WHeaderCell), WHeaderCell.CELL_ID);
@@ -78,16 +75,16 @@ namespace MSDocWFLayout.iOS.CV
 
 
 
-        public override void AwakeFromNib()
-        {
-            base.AwakeFromNib();
-            var waterfallLayout = new WaterfallCollectionLayout();
+        //public override void AwakeFromNib()
+        //{
+        //    base.AwakeFromNib();
+        //    var waterfallLayout = new WaterfallCollectionLayout();
 
-            waterfallLayout.SizeForItem += (collectionView, layout, indexPath) => {
-                var collection = collectionView as WaterfallCollectionView;
-                return new CGSize(180, collection.Source.Heights[(int)indexPath.Item]);
-            };
-        }
+        //    waterfallLayout.SizeForItem += (collectionView, layout, indexPath) => {
+        //        var collection = collectionView as WaterfallCollectionView;
+        //        return new CGSize(180, collection.Source.Heights[(int)indexPath.Item]);
+        //    };
+        //}
 
     }
     
