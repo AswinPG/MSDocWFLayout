@@ -15,17 +15,15 @@
             BackgroundColor="Lime"
             HeightRequest="100"
             HorizontalOptions="FillAndExpand"
-            Source="{Binding download_url}"
             VerticalOptions="FillAndExpand" />
         <Image
             x:Name="MainImage2"
             Aspect="AspectFit"
-            Background="Lime"
-            BackgroundColor="Lime"
             HeightRequest="100"
             HorizontalOptions="FillAndExpand"
-            Source="{Binding download_url}"
+            Source="a.jpg"
             VerticalOptions="FillAndExpand" />
+
         <msdocwflayout:WFCollectionView
             x:Name="Cv"
             BackgroundColor="Yellow"
