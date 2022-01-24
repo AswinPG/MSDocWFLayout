@@ -8,25 +8,10 @@
     BackgroundColor="Black">
 
     <StackLayout VerticalOptions="FillAndExpand">
-        <Image
-            x:Name="MainImage"
-            Aspect="AspectFit"
-            Background="Lime"
-            BackgroundColor="Lime"
-            HeightRequest="100"
-            HorizontalOptions="FillAndExpand"
-            VerticalOptions="FillAndExpand" />
-        <Image
-            x:Name="MainImage2"
-            Aspect="AspectFit"
-            HeightRequest="100"
-            HorizontalOptions="FillAndExpand"
-            Source="a.jpg"
-            VerticalOptions="FillAndExpand" />
+        
 
         <msdocwflayout:WFCollectionView
             x:Name="Cv"
-            BackgroundColor="Yellow"
             RemainingItemsThreshold="1"
             RemainingItemsThresholdReached="Cv_RemainingItemsThresholdReached"
             VerticalOptions="FillAndExpand">
@@ -49,8 +34,7 @@
 
                             <Image
                                 Aspect="AspectFill"
-                                Background="Lime"
-                                BackgroundColor="Lime"
+                                BackgroundColor="Beige"
                                 HorizontalOptions="FillAndExpand"
                                 Source="{Binding download_url}"
                                 VerticalOptions="FillAndExpand" />
@@ -87,7 +71,7 @@
                 </DataTemplate>
             </msdocwflayout:WFCollectionView.ItemTemplate>
         </msdocwflayout:WFCollectionView>
-        <Button Clicked="Button_Clicked_1" Text="Add" />
+        <Button Clicked="Button_Clicked_1" Text="Add" IsVisible="false"/>
     </StackLayout>
 
 </ContentPage>

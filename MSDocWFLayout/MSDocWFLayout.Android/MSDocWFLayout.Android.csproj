@@ -16,7 +16,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v12.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
@@ -94,7 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MSDocWFLayout\MSDocWFLayout.csproj">
-      <Project>{C8EB5D0B-6D71-47DF-B910-7BE58D58BF50}</Project>
+      <Project>{592AD1AD-7236-4958-9012-721AFF8A739D}</Project>
       <Name>MSDocWFLayout</Name>
     </ProjectReference>
   </ItemGroup>

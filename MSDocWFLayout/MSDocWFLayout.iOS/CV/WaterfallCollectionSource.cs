@@ -274,6 +274,7 @@ namespace MSDocWFLayout.iOS.CV
             subview.Frame = new CGRect(frame.X, frame.Y, cell.Frame.Width, cell.Frame.Height);
 
             var element = (cell.RendererView as VisualElementRenderer<VisualElement>).Element;
+            element.BindingContext = null;
             element.BindingContext = ItemSource[(int)indexPath.Item];
             element.Layout(new Xamarin.Forms.Rectangle(0, 0, cell.Frame.Width, cell.Frame.Height));
 

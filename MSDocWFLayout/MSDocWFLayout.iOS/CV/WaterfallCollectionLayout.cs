@@ -4,6 +4,7 @@ using UIKit;
 using System.Collections.Generic;
 using CoreGraphics;
 using Newtonsoft.Json;
+using Xamarin.Forms;
 
 namespace MSDocWFLayout.iOS.CV
 {
@@ -218,7 +219,7 @@ namespace MSDocWFLayout.iOS.CV
                     columnIndex = NextColumnIndexForItem(n);
                     var xOffset = SectionInset.Left + (itemWidth + MinimumColumnSpacing) * (nfloat)columnIndex;
                     var yOffset = columnHeights[columnIndex];
-                    var itemSize = (SizeForItem == null) ? new CGSize(0, 0) : SizeForItem((int)indexPath.Item);
+                    var itemSize = (SizeForItem == null) ? new CGSize(0, 0) : CalculateFromSize(SizeForItem((int)indexPath.Item));
                     nfloat itemHeight = 0.0f;
 
                     if (itemSize.Height > 0.0f && itemSize.Width > 0.0f)
@@ -461,6 +462,11 @@ namespace MSDocWFLayout.iOS.CV
 
 
         public WaterfallCollectionSizeDelegate SizeForItem;
+
+        public CGSize CalculateFromSize(Size size)
+        {
+            return new CGSize(size.Width, size.Height);
+        }
 
         public event WaterfallCollectionFloatDelegate HeightForHeader;
         public event WaterfallCollectionFloatDelegate HeightForFooter;
