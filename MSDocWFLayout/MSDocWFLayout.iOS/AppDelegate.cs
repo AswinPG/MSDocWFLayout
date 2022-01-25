@@ -23,7 +23,7 @@ namespace MSDocWFLayout.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            Xamarin.Forms.Nuke.FormsHandler.Init(debug: false);
+            Xamarin.Forms.Nuke.FormsHandler.Init(debug: true);
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

@@ -8,7 +8,7 @@
     BackgroundColor="Black">
 
     <StackLayout VerticalOptions="FillAndExpand">
-        
+
 
         <msdocwflayout:WFCollectionView
             x:Name="Cv"
@@ -27,32 +27,45 @@
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped" />
                         </Grid.GestureRecognizers>
+                        <Label
+                            Padding="0,10"
+                            FontSize="18"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Text="Loading.."
+                            TextColor="White"
+                            VerticalOptions="CenterAndExpand" />
+
                         <Frame
                             Padding="0"
+                            Background="Transparent"
+                            BackgroundColor="Transparent"
                             CornerRadius="30"
                             IsClippedToBounds="True">
 
                             <Image
                                 Aspect="AspectFill"
-                                BackgroundColor="Beige"
+                                Background="Transparent"
+                                BackgroundColor="Transparent"
                                 HorizontalOptions="FillAndExpand"
                                 Source="{Binding download_url}"
                                 VerticalOptions="FillAndExpand" />
                         </Frame>
+                        <!--<Image Source="https://images.squarespace-cdn.com/content/v1/566845755a566811d3f86534/1563157645553-FVKYQJ6G63X511KFJ2AO/DSC_2643b_1.jpg" />-->
                         <!--<Label
                             HorizontalOptions="FillAndExpand"
                             HorizontalTextAlignment="Center"
                             Text="{Binding Name}"
                             TextColor="White"
                             VerticalOptions="StartAndExpand" />-->
-                        <Label
+                        <!--<Label
                             Padding="0,10"
                             FontSize="18"
                             HorizontalOptions="FillAndExpand"
                             HorizontalTextAlignment="Center"
                             Text="{Binding id}"
                             TextColor="White"
-                            VerticalOptions="CenterAndExpand" />
+                            VerticalOptions="CenterAndExpand" />-->
                         <!--<Button
                             Grid.Row="1"
                             Background="Red"
@@ -71,7 +84,10 @@
                 </DataTemplate>
             </msdocwflayout:WFCollectionView.ItemTemplate>
         </msdocwflayout:WFCollectionView>
-        <Button Clicked="Button_Clicked_1" Text="Add" IsVisible="false"/>
+        <Button
+            Clicked="Button_Clicked_1"
+            IsVisible="false"
+            Text="Add" />
     </StackLayout>
 
 </ContentPage>
