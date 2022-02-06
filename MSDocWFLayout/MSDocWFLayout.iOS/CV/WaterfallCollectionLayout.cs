@@ -12,10 +12,14 @@ namespace MSDocWFLayout.iOS.CV
     public class WaterfallCollectionLayout : UICollectionViewLayout
     {
         #region Private Variables
-        private int columnCount = 2;
+        private int columnCount = 3;
         private nfloat minimumColumnSpacing = 10;
         private nfloat minimumInterItemSpacing = 10;
-        private nfloat headerHeight = 0.0f;
+        //private nfloat headerHeight = 0.0f;
+
+        public View Header;
+
+
         private nfloat footerHeight = 0.0f;
         private UIEdgeInsets sectionInset = new UIEdgeInsets(10, 10, 10, 10);
         private WaterfallCollectionRenderDirection itemRenderDirection = WaterfallCollectionRenderDirection.ShortestFirst;
@@ -74,19 +78,19 @@ namespace MSDocWFLayout.iOS.CV
             }
         }
 
-        [Export("HeaderHeight")]
-        public nfloat HeaderHeight
-        {
-            get { return headerHeight; }
-            set
-            {
-                WillChangeValue("HeaderHeight");
-                headerHeight = value;
-                DidChangeValue("HeaderHeight");
+        //[Export("HeaderHeight")]
+        //public nfloat HeaderHeight
+        //{
+        //    get { return headerHeight; }
+        //    set
+        //    {
+        //        WillChangeValue("HeaderHeight");
+        //        headerHeight = value;
+        //        DidChangeValue("HeaderHeight");
 
-                InvalidateLayout();
-            }
-        }
+        //        InvalidateLayout();
+        //    }
+        //}
 
         [Export("FooterHeight")]
         public nfloat FooterHeight
@@ -134,12 +138,22 @@ namespace MSDocWFLayout.iOS.CV
         #region Constructors
         public WaterfallCollectionLayout()
         {
+            //Header.PropertyChanged += Header_PropertyChanged;
         }
 
-        public WaterfallCollectionLayout(NSCoder coder) : base(coder)
-        {
+        //public void Header_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        //{
+        //    if(e.PropertyName == nameof(Header.Height))
+        //    {
+        //        InvalidateLayout();
+        //    }
+            
+        //}
 
-        }
+        //public WaterfallCollectionLayout(NSCoder coder) : base(coder)
+        //{
+
+        //}
         #endregion
 
         #region Public Methods
@@ -189,13 +203,14 @@ namespace MSDocWFLayout.iOS.CV
                 var itemWidth = (nfloat)Math.Floor((width - ((ColumnCount - 1) * MinimumColumnSpacing)) / ColumnCount);
 
                 // Calculate section header
-                var heightHeader = (HeightForHeader == null) ? HeaderHeight :
-                  HeightForHeader(CollectionView, this, section);
+                //var heightHeader = (HeightForHeader == null) ? HeaderHeight :
+                //  HeightForHeader(CollectionView, this, section);
 
-                if (heightHeader > 0)
+                if (Header != null)
                 {
                     attributes = UICollectionViewLayoutAttributes.CreateForSupplementaryView(UICollectionElementKindSection.Header, NSIndexPath.FromRowSection(0, section));
-                    attributes.Frame = new CGRect(0, top, CollectionView.Bounds.Width, heightHeader);
+                    var frame = new CGRect(0, 0, CollectionView.Frame.Width, Header.Height);
+                    attributes.Frame = frame;
                     headersAttributes.Add(section, attributes);
                     allItemAttributes.Add(attributes);
 
@@ -313,8 +328,11 @@ namespace MSDocWFLayout.iOS.CV
                     attributes = footersAttributes[indexPath.Section];
                     break;
             }
-
+            attributes = headersAttributes[indexPath.Section];
             return attributes;
+            //var attrs = UICollectionViewLayoutAttributes.CreateForSupplementaryView(kind, indexPath);
+            //attrs.Frame = new CGRect(0, 0, CollectionView.Frame.Width, Header.HeightRequest);
+            //return attrs;
         }
 
         public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect(CGRect rect)

@@ -16,15 +16,15 @@ namespace MSDocWFLayout.iOS.CV
         protected float PreviousHorizontalOffset, PreviousVerticalOffset;
         #endregion
 
-        ItemsView ItemsView;
+        WFCollectionView WFCollectionView;
 
         #region Constructors
-        public WaterfallCollectionDelegate(UICollectionView collectionView, ItemsView itemsView, WaterfallCollectionSource source)
+        public WaterfallCollectionDelegate(UICollectionView collectionView, WFCollectionView itemsView, WaterfallCollectionSource source)
         {
 
             // Initialize
             CollectionView = collectionView;
-            ItemsView = itemsView;
+            WFCollectionView = itemsView;
             ItemsSource = source;
         }
 
@@ -52,7 +52,7 @@ namespace MSDocWFLayout.iOS.CV
                 LastVisibleItemIndex = lastVisibleItemIndex
             };
 
-            var itemsView = ItemsView;
+            var itemsView = WFCollectionView;
             var source = ItemsSource;
             itemsView.SendScrolled(itemsViewScrolledEventArgs);
 

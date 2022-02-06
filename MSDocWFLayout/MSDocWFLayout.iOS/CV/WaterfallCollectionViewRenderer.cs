@@ -39,10 +39,12 @@ namespace MSDocWFLayout.iOS.CV
         {
 
             var _layout = new WaterfallCollectionLayout();
+            _layout.Header = Element.Header;
+            //_layout.Header.PropertyChanged += _layout.Header_PropertyChanged;
             //_layout.ItemsSource = SourceList;
 
             // _layout.GetHeightForCellDelegate = Element.GetHeightForCellDelegate;
-            _layout.ColumnCount = 2;
+            _layout.ColumnCount = 3;
             //_layout.MinCellHeight = Element.MinCellHeight;
             //_layout.MaxCellHeight = Element.MaxCellHeight;
             // _layout.Header = Element.Header;
@@ -55,12 +57,14 @@ namespace MSDocWFLayout.iOS.CV
             ////source.ItemsSource = SourceList;
             //WSource.Header = Element.Header;
             //var source = new ObservableItemsSource(Element.ItemsSource, collectionView, WSource, this);
-            var wfsouce = new WaterfallCollectionSource(collectionView, Element.ItemsSource);
+            var wfsouce = new WaterfallCollectionSource(collectionView, Element.ItemsSource,Element.Header);
             wfsouce.ItemTemplate = Element.ItemTemplate;
             collectionView.DataSource = wfsouce;
             collectionView.Delegate = new WaterfallCollectionDelegate(collectionView,Element,wfsouce);
 
             collectionView.RegisterClassForCell(typeof(TextCollectionViewCell), TextCollectionViewCell.CELL_ID);
+            if (Element.Header != null)
+                collectionView.RegisterClassForSupplementaryView(typeof(WHeader), UICollectionElementKindSection.Header, WHeader.CELL_ID);
             //collectionView.RegisterClassForCell(typeof(WHeaderCell), WHeaderCell.CELL_ID);
 
             //collectionView.Source = source;

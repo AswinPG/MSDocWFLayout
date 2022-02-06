@@ -18,6 +18,7 @@ namespace MSDocWFLayout.iOS.CV
         internal event NotifyCollectionChangedEventHandler CollectionViewUpdated;
 
         public DataTemplate ItemTemplate { get; set; }
+        View Header;
 
         readonly IEnumerable _itemsSource;
         private nint _section = 0;
@@ -28,10 +29,11 @@ namespace MSDocWFLayout.iOS.CV
         #endregion
 
         #region Constructors
-        public WaterfallCollectionSource(UICollectionView collectionView, IEnumerable itemsource)
+        public WaterfallCollectionSource(UICollectionView collectionView, IEnumerable itemsource, View header)
         {
             // Initialize
             CollectionView = collectionView;
+            Header = header;
             _itemsSource = itemsource;
             // Init numbers collection
             foreach (var item in itemsource)
@@ -283,7 +285,33 @@ namespace MSDocWFLayout.iOS.CV
             return cell;
         }
 
+        public override UICollectionReusableView GetViewForSupplementaryElement(UICollectionView collectionView, NSString elementKind, NSIndexPath indexPath)
+        {
+            //switch (elementKind)
+            //{
+            //    case "header":
+            //        var header = (WHeader)collectionView.DequeueReusableSupplementaryView(elementKind, WHeader.CELL_ID, indexPath);
+            //        if(header.RendererView == null)
+            //        {
+            //            var nativeView = Header.ToUIView(new CGRect(0, 0, header.Frame.Width, header.Frame.Height));
+            //            header.RendererView = nativeView;
+            //        }
+                    
+            //        return header;
+            //    case "footer":
+            //        //attributes = footersAttributes[indexPath.Section];
+            //        return null;
+            //}
+            var header = (WHeader)collectionView.DequeueReusableSupplementaryView(elementKind, WHeader.CELL_ID, indexPath);
+            if (header.RendererView == null)
+            {
+                var nativeView = Header.ToUIView(new CGRect(0, 0, header.Frame.Width, header.Frame.Height));
+                header.RendererView = nativeView;
+            }
 
+            return header;
+            //return base.GetViewForSupplementaryElement (collectionView, elementKind, indexPath);
+        }
 
 
 

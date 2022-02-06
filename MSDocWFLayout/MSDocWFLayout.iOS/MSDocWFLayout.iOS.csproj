@@ -66,6 +66,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CV\FormsView_Utils.cs" />
+    <Compile Include="CV\ItemsViewLayout.cs" />
     <Compile Include="CV\SingleItemCell.cs" />
     <Compile Include="CV\TextCollectionViewCell.cs" />
     <Compile Include="CV\WaterfallCollectionDelegate.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="CV\WaterfallCollectionSource.cs" />
     <Compile Include="CV\WaterfallCollectionView.cs" />
     <Compile Include="CV\WaterfallCollectionViewRenderer.cs" />
+    <Compile Include="CV\WHeader.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />

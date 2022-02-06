@@ -10,11 +10,27 @@
     <StackLayout VerticalOptions="FillAndExpand">
 
 
+        <Button Text="Blah" />
         <msdocwflayout:WFCollectionView
             x:Name="Cv"
             RemainingItemsThreshold="1"
             RemainingItemsThresholdReached="Cv_RemainingItemsThresholdReached"
             VerticalOptions="FillAndExpand">
+            <msdocwflayout:WFCollectionView.Header>
+                <StackLayout
+                    x:Name="blah"
+                    BackgroundColor="Green"
+                    HeightRequest="200">
+                    <Label
+                        Padding="20"
+                        BackgroundColor="Black"
+                        HorizontalOptions="FillAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="Header"
+                        TextColor="White" />
+                </StackLayout>
+
+            </msdocwflayout:WFCollectionView.Header>
             <msdocwflayout:WFCollectionView.ItemTemplate>
                 <DataTemplate>
 
@@ -86,8 +102,9 @@
         </msdocwflayout:WFCollectionView>
         <Button
             Clicked="Button_Clicked_1"
-            IsVisible="false"
+            IsVisible="true"
             Text="Add" />
+        <Button Text="Blah" />
     </StackLayout>
 
 </ContentPage>
